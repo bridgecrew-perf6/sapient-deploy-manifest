@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       name: myapp-pod 
-      label: 
+      labels: 
         app: myapp 
     spec:
       containers: 
