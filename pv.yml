@@ -9,4 +9,4 @@ spec:
     accessModes: 
       - ReadWriteOnce #readwritemany #read
     hostPath:
-      pat: /mnt/data
+      path: /mnt/data
