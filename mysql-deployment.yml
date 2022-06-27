@@ -3,7 +3,7 @@ apiVersion: apps/v1 #we know that all the communication in k8s happen through ap
 #inside kind you need to define type of api you want to execute. 
 kind: Deployment #pod#service
 metadata: #using metada and name we define the name of deployment
-  name: mysql-deployment #a deployment name myapp-deployment is created using .metadata.name field
+  name: mysql-deployment-gopal #a deployment name myapp-deployment is created using .metadata.name field
   labels:
     app: myapp 
 spec: #inside your deployment we need to provide spec how this deployment api will launch your pod
