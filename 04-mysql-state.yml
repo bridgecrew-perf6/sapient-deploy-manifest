@@ -33,10 +33,4 @@ spec:
         ports:
         - containerPort: 80
           name: web
-        volumeMounts:
-        - name: vikki-pv-volume
-          mountPath: /usr/share/nginx/html
-      volumes:
-      - name: vikki-pv-volume
-        persistentVolumeClaim:
-          claimName: vikki-pv-volume-claim
+       
