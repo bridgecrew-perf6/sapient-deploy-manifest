@@ -9,6 +9,7 @@ spec: #inside your deployment we need to provide spec how this deployment api wi
   selector: #the .spec.selector file define ho the deployment find which pod to manage. 
     matchLabels: #.spec.selector.matchlabel it is euqivalent to map ke,value. something called as match expression
       app: mysql 
+  serviceName: "mysql"
   template: #container template deploy in three pod
     metadata:
 
