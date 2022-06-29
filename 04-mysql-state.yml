@@ -34,12 +34,4 @@ spec: #inside your deployment we need to provide spec how this deployment api wi
             - name: mysql-store
               mountPath: /var/lib/mysql 
                 #the configmap i need to run inside your container. to update my sql
-  volumeClaimTemplates:
-  - metadata:
-      name: mysql-store
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      storageClassName: statestorage
-      resources:
-        requests:
-          storage: 10Gi 
+  
