@@ -1,36 +1,39 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx
-  labels:
-    app: nginx
-spec:
-  ports:
-  - port: 80
-    name: web
-  clusterIP: None
-  selector:
-    app: nginx
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: web
+  name: mysql-set
 spec:
-  serviceName: "nginx"
-  replicas: 2
   selector:
     matchLabels:
-      app: nginx
+      app: mysql
+  serviceName: "mysql"
+  replicas: 3
   template:
     metadata:
       labels:
-        app: nginx
+        app: mysql
     spec:
+      terminationGracePeriodSeconds: 10
       containers:
-      - name: nginx
-        image: k8s.gcr.io/nginx-slim:0.8
+      - name: mysql
+        image: mysql:5.7
         ports:
-        - containerPort: 80
-          name: web
-       
+        - containerPort: 3306
+        volumeMounts:
+        - name: mysql-store
+          mountPath: /var/lib/mysql
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-password
+                key: MYSQL_ROOT_PASSWORD
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-store
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: "local-storage"
+      resources:
+        requests:
+          storage: 1Gi
