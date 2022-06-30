@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: mem-cpu-demo 
+spec:
+  hard:
+    requests.cpu: "1" #you will get a gurantee that your container will get one core cpu . kube scheduler
+    #will ensure that in a node which is having this much resource avaiale there only it will deploy your container
+    requests.memory: 1Gi
+    limits.cpu: "2" #it ensure that your container never cross goes above this limit. 
+    limits.memory: 2Gi
